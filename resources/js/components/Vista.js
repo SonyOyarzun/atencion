@@ -19,13 +19,14 @@ const useStyles = makeStyles({
         width: '30%',
     },
     media1: {
-        width: '50%',
-        height: undefined,
-        aspectRatio: 1,
+        position: 'relative',
+        maxWidth: '100%',
+        height: 400,
+        aspectRatio: 10,
         padding: 50,
     },
     media2: {
-        width: '30%',
+        width: '33%',
         padding: 40,
         height: '45%',
         aspectRatio: 1,
@@ -33,7 +34,7 @@ const useStyles = makeStyles({
     },
     select: {
         width: '100%',
-        padding: 50,
+        padding: 35,
     },
 });
 

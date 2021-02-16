@@ -15,7 +15,6 @@ class FilaController extends Controller
             $contador = fila::select()->orderBy('id', 'DESC')->offset(0)->limit(3)->get();
 
             return $contador;
-
         } catch (\Throwable $th) {
 
             return $th->getMessage();
@@ -45,7 +44,12 @@ class FilaController extends Controller
 
                 $numero = $this->obtener();
                 $contador = new fila();
-                $contador->numero = $numero->numero + 1;
+                if (($numero->numero + 1) > 99) {
+                    $contador->numero = 1;
+                } else {
+                    $contador->numero = $numero->numero + 1;
+                }
+
                 $contador->posicion = $posicion;
                 $contador->created_at = now();
                 $contador->updated_at = now();

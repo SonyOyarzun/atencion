@@ -45,22 +45,30 @@ export default function Caja() {
 
     const [solicitud, setSolicitud] = useState([])
 
-    const listen = () => {
+
+
+    useEffect(() => {
 
         mostrar().then(response => {
-            console.log('solicitud :', response)
-
-            let array = []
-            array.push(response)
-            console.log('array ', array)
-            setSolicitud(array[0])
+            setSolicitud(response)
+          console.log('getNotice :', response)
+        }).catch(error => {
+          swal("Error " + error)
         })
-
-    }
-
-
-    listen()
-
+    
+        listen()
+    
+      }, []);
+    
+      const listen = () => {
+    
+        Echo.channel('channel-fila')
+          .listen('FilaEvent', (response) => {
+            console.log('echo', response.data[0])
+            setSolicitud(response.data[0])
+          });
+    
+      }
 
 
     const classes = useStyles();

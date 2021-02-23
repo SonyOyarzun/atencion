@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\fila;
 use Illuminate\Http\Request;
 
+use App\Events\CajaEvent;
+use App\Events\FilaEvent;
+
 class FilaController extends Controller
 {
 
@@ -28,6 +31,7 @@ class FilaController extends Controller
             $contador = fila::select()->orderBy('id', 'DESC')->offset(0)->limit(1)->get();
 
             return $contador[0];
+
         } catch (\Throwable $th) {
 
             return $th->getMessage();
@@ -55,6 +59,15 @@ class FilaController extends Controller
                 $contador->updated_at = now();
                 $contador->save();
 
+                $caja = [$this->obtener()];
+
+                $fila = [$this->mostrar()];
+
+                broadcast(new CajaEvent($caja));
+
+                broadcast(new FilaEvent($fila));
+
+
                 return $this->obtener()->numero;
             } else {
                 return ['title' => "Algo salio Mal!", 'text' => 'Debe ingresar una caja como posicion', 'icon' => "error", 'button' => "Aceptar"];
@@ -74,6 +87,14 @@ class FilaController extends Controller
             $contador->created_at = now();
             $contador->updated_at = now();
             $contador->save();
+
+            $caja = [$this->obtener()];
+
+            $fila = [$this->mostrar()];
+
+            broadcast(new CajaEvent($caja));
+
+            broadcast(new FilaEvent($fila));
 
             return $this->obtener()->numero;
         } catch (\Throwable $th) {

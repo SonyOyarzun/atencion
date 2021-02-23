@@ -37,27 +37,55 @@ export default function Caja() {
 
     const [posicion, setPosicion] = useState([])
 
-    const listen = () => {
-
-
-        obtener().then(response => {
-            console.log('obtener :', response)
-            setContador(response)
-        })
-
-    }
+  
 
     useEffect(() => {
 
         cajas().then(response => {
-            console.log('posicion :', response)
 
-            setPosicion(response)
+            let array = []
+
+            array.push(response)
+
+            setPosicion(array[0])
+
+          console.log('posicion caja :', array)
+
+        }).catch(error => {
+          swal("Error " + error)
         })
 
-    }, []);
+        obtener().then(response => {
 
-    listen()
+            let array = []
+
+            array.push(response)
+
+            setContador(array[0])
+
+          console.log('contador caja :', array)
+
+        }).catch(error => {
+          swal("Error " + error)
+        })
+    
+     
+    
+      }, []);
+
+      
+    
+      const listen = () => {
+    
+        Echo.channel('channel-caja')
+          .listen('CajaEvent', (response) => {
+            console.log('CajaEvent', response.data[0])
+           // setContador(response.data[0])
+          });
+    
+      }
+
+      listen()
 
     const suma = () => {
 

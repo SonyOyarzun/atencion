@@ -26,7 +26,9 @@
     },
     "dependencies": {
         "@material-ui/core": "^4.11.3",
+        "laravel-echo": "^1.10.0",
         "mdbreact": "^5.0.1",
+        "pusher-js": "^7.0.3",
         "react-bootstrap": "^1.4.3",
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",

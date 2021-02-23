@@ -70,6 +70,7 @@ export default function Caja() {
         })
     
      
+        listen()
     
       }, []);
 
@@ -80,12 +81,11 @@ export default function Caja() {
         Echo.channel('channel-caja')
           .listen('CajaEvent', (response) => {
             console.log('CajaEvent', response.data[0])
-           // setContador(response.data[0])
+            setContador(response.data[0])
           });
     
       }
 
-      listen()
 
     const suma = () => {
 

@@ -1,0 +1,16 @@
+canal publico, no requiere login
+
+Echo.channel('channel-fila')
+          .listen('FilaEvent', (response) => {
+            console.log('echo', response.data[0])
+            setSolicitud(response.data[0])
+          });
+
+
+ canal privado, requiere login
+
+ Echo.private('channel-fila')
+          .listen('FilaEvent', (response) => {
+            console.log('echo', response.data[0])
+            setSolicitud(response.data[0])
+          });

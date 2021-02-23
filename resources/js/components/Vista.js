@@ -51,7 +51,7 @@ export default function Caja() {
 
         mostrar().then(response => {
             setSolicitud(response)
-          console.log('getNotice :', response)
+          console.log('mostrar :', response)
         }).catch(error => {
           swal("Error " + error)
         })
@@ -62,13 +62,16 @@ export default function Caja() {
     
       const listen = () => {
     
+        console.log('listen...')
+
         Echo.channel('channel-fila')
           .listen('FilaEvent', (response) => {
-            console.log('echo', response.data[0])
+            console.log('FilaEvent', response.data[0])
             setSolicitud(response.data[0])
           });
     
       }
+
 
 
     const classes = useStyles();

@@ -18,6 +18,6 @@ Broadcast::channel('channel-caja', function () {
     return true;
 });
 
-Broadcast::channel('channel-fila', function ($validate) {
-    return $validate;
+Broadcast::channel('channel-fila', function () {
+    return true;
 });

@@ -32,6 +32,6 @@ class FilaEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-fila',true);
+        return new Channel('channel-fila');
     }
 }

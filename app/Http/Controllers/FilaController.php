@@ -18,6 +18,7 @@ class FilaController extends Controller
             $contador = fila::select()->orderBy('id', 'DESC')->offset(0)->limit(3)->get();
 
             return $contador;
+            
         } catch (\Throwable $th) {
 
             return $th->getMessage();
